@@ -1,5 +1,7 @@
 """
-Demo of simple image processing operations using `numpy`.
+## Image Processing
+
+Example of simple image processing operations using `numpy`.
 """
 
 import streamlit as st

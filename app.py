@@ -3,7 +3,7 @@ from pathlib import Path
 import re
 
 st.set_page_config(page_title="Streamlit by Example")
-st.title("Streamlit by Example")
+# st.title("Streamlit by Example")
 
 
 re_doc = re.compile('"""(.*)"""(.*)', re.M|re.DOTALL)
@@ -20,7 +20,6 @@ def read_file(name):
 def show_example(name):
     doc, code = read_file(name)
 
-    st.divider()
     st.markdown(doc)
 
     with st.expander("Show Code"):
@@ -29,7 +28,10 @@ def show_example(name):
     exec(code)
 
 root = Path("examples")
-paths = {f.name: f for f in root.glob("*.py")}
+paths = {f.name: f for f in sorted(root.glob("*.py"))}
 
-page = st.selectbox("Select Page", paths.keys())
+with st.sidebar:
+    st.title("Streamlit By Example")
+    page = st.selectbox("Select Example", paths.keys())
+
 show_example(page)

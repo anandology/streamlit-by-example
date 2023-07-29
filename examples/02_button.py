@@ -1,5 +1,5 @@
 """
-**Button**
+## Button
 
 The `st.button` creates a button and returns a boolean value whether or not the button is clicked.
 """
