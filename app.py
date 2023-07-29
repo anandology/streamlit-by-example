@@ -28,7 +28,7 @@ def show_example(name):
     st.divider()
     exec(code)
 
-root = Path("demo")
+root = Path("examples")
 paths = {f.name: f for f in root.glob("*.py")}
 
 page = st.selectbox("Select Page", paths.keys())
