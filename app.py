@@ -2,12 +2,9 @@ import streamlit as st
 from pathlib import Path
 import re
 
-def select_page():
-    st.title(f"Streamlit by Examples")
-    name = st.selectbox("Select Page", paths.keys())
+st.set_page_config(page_title="Streamlit by Example")
+st.title("Streamlit by Example")
 
-    st.divider()
-    return name
 
 re_doc = re.compile('"""(.*)"""(.*)', re.M|re.DOTALL)
 def read_file(name):
@@ -20,19 +17,19 @@ def read_file(name):
     else:
         return "", code
 
-def show_demo(name):
+def show_example(name):
     doc, code = read_file(name)
 
+    st.divider()
     st.markdown(doc)
 
-    st.code(code)
+    with st.expander("Show Code"):
+        st.code(code)
     st.divider()
-
     exec(code)
-
 
 root = Path("demo")
 paths = {f.name: f for f in root.glob("*.py")}
 
-page = select_page()
-show_demo(page)
+page = st.selectbox("Select Page", paths.keys())
+show_example(page)
